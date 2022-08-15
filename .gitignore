@@ -1,0 +1,13 @@
+##
+# Git ignores
+##
+
+.DS_Store
+.vscode
+.okta-aws
+
+go-britive
+
+/*.go
+/target
+/build
