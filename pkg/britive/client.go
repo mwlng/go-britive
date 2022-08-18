@@ -43,7 +43,7 @@ func NewClient(britive *Britive, oktaClient *okta.OktaClient) *BritiveClient {
 	}
 }
 
-func (bc *BritiveClient) LoginWithOkta(password, authToken string, oktaClient *okta.OktaClient) error {
+func (bc *BritiveClient) LoginWithOkta(password, authToken string) error {
 	loginEndpoint := fmt.Sprintf("%s/login?token=%s", bc.britive.TenentUrl, authToken)
 	req, _ := http.NewRequest("GET", loginEndpoint, nil)
 	_, err := bc.httpClient.Do(req)
