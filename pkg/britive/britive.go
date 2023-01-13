@@ -132,7 +132,7 @@ func (b *Britive) CheckoutAccess(profileId, environmentId, accessToken, justific
 	case "PROGRAMMATIC":
 		return b.CheckoutProgrammaticAccess(profileId, environmentId, accessToken, justification)
 	default:
-		return nil, fmt.Errorf("unexpected accessType=%s", accessType))
+		return nil, fmt.Errorf("unexpected accessType=%s", accessType)
 	}
 }
 
