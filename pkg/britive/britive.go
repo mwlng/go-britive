@@ -125,6 +125,17 @@ func (b *Britive) ListProfiles(accessToken string) ([]BritiveProfile, error) {
 	return profiles, nil
 }
 
+func (b *Britive) CheckoutAccess(profileId, environmentId, accessToken, justification, accessType string) (map[string]interface{}, error) {
+	switch accessType {
+	case "CONSOLE":
+		return b.CheckoutConsoleAccess(profileId, environmentId, accessToken, justification)
+	case "PROGRAMMATIC":
+		return b.CheckoutProgrammaticAccess(profileId, environmentId, accessToken, justification)
+	default:
+		return nil, fmt.Errorf("unexpected accessType=%s", accessType))
+	}
+}
+
 func (b *Britive) CheckoutConsoleAccess(profileId, environmentId, accessToken, justification string) (map[string]interface{}, error) {
 	checkoutEndpoint := fmt.Sprintf("%s/api/access/%s/environments/%s?accessType=CONSOLE", b.TenentUrl, profileId, environmentId)
 	jsonData := []byte(fmt.Sprintf("{ \"justification\": \"%s\" }", justification))
