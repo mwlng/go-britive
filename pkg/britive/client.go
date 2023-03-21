@@ -75,7 +75,10 @@ func (bc *BritiveClient) LoginWithOkta(password, authToken string) error {
 
 	var authResultData BritiveAuthResultData
 	json.Unmarshal(bodyBytes, &authResultData)
-	loginUrl := authResultData.AuthenticationResult.ChallengeParameters.LoginUrl
+	loginUrl := strings.ReplaceAll(
+		authResultData.AuthenticationResult.ChallengeParameters.LoginUrl,
+		" ",
+		"%20")
 
 	var redirectUrl = ""
 	verifyCode, _ := bc.britive.GenerateVerifier()
